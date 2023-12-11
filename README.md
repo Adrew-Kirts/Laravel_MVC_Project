@@ -29,3 +29,52 @@ Then:
 
 -----
 
+File structuration of a Laravel project: 
+
+```
+Laravel Project
+├── app
+│   ├── Console
+│   ├── Http
+│   ├── Models
+│   ├── Providers
+│   ├── Services
+│   └──...
+├── config
+│   ├── app.php
+│   ├── auth.php
+│   ├── database.php
+│   └──...
+├── database
+│   ├── factories
+│   ├── migrations
+│   ├── seeds
+│   └──...
+├── public
+│   └── vendor
+│      └── telescope
+├── resources
+│   ├── views (blades)
+│   ├── css
+│   └──...
+├── routes
+│   ├── api.php
+│   ├── web.php
+│   └──...
+├── storage
+│   ├── app
+│   ├── framework
+│   └──...
+├── tests
+│   ├── Feature
+│   ├── Unit
+│   └──...
+├── vendor
+│   └──...
+├── artisan
+├── composer.json
+├── composer.lock
+├── package.json
+├── phpunit.xml
+└── README.md
+```
