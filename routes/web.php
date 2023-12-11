@@ -15,8 +15,14 @@ use App\Http\Controllers\MovieController;
 |
 */
 
-Route::get('/', [HomeController::class, 'home']);
+Route::get('/', function(){
+    return view('homepage');
+});
 
-Route::get('/movie', [MovieController::class, 'showAllMovies']);
+Route::get('/movie', function () {
+    return view('movies-list');
+});
 
-Route::get('/movie/{id}', [MovieController::class, 'showMovie']);
+Route::get('/movie/{id}', function (string $id) {
+    return view('movie-details', ['id' => $id]);
+});
