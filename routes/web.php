@@ -16,13 +16,13 @@ use App\Http\Controllers\MovieController;
 */
 
 Route::get('/', function(){
-    return view('homepage');
+    return view('pages.home');
 });
 
 Route::get('/movie', function () {
-    return view('movies-list');
+    return view('pages.movies-list');
 });
 
 Route::get('/movie/{id}', function (string $id) {
-    return view('movie-details', ['id' => $id]);
+    return view('pages.movie-details', ['id' => $id]);
 });
