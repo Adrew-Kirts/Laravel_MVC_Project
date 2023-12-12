@@ -3,7 +3,7 @@
 <head>
     @include('includes.head')
 </head>
-<body class="bg-gray-100">
+<body class="bg-gray-200">
 <div class="flex flex-col min-h-screen">
     <header>
         @include('includes.header')
