@@ -1,17 +1,9 @@
-{{--@extends('layouts.default')--}}
-
-{{--@section('content')--}}
-{{--    <h2 class="text-3xl font-bold underline">--}}
-{{--        All movies--}}
-{{--    </h2>--}}
-{{--@stop--}}
-
 @extends('layouts.default')
 
 @section('content')
     <div class="container mx-auto px-4 py-6">
         <h2 class="text-3xl font-bold mb-10 text-center text-gray-800">
-            Movie Database
+            All Movies
         </h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             @foreach ($movies as $movie)
@@ -22,14 +14,14 @@
                         <div class="p-4">
                             <h3 class="text-xl font-semibold mb-2">{{ $movie->title }}</h3>
                             <p class="text-sm text-gray-600 mb-4">Genre: {{ $movie->genre }}</p>
-                            <p class="text-gray-600 text-base italic">{{ Str::limit($movie->description, 100) }}</p>
+                            <p class="text-gray-700 text-base italic min-h-[50px]">Starring: {{ Str::limit($movie->actor, 50) }}</p>
                         </div>
                     </div>
                 </a>
             @endforeach
-        </div>
-        <div class="mt-6">
-            {{ $movies->links() }}
-        </div>
-    </div>
+{{--        </div>--}}
+{{--        <div class="mt-6">--}}
+{{--            {{ $movies->links() }}--}}
+{{--        </div>--}}
+{{--    </div>--}}
 @stop

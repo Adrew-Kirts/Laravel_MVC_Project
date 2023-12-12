@@ -9,7 +9,7 @@ use Illuminate\View\View;
 class MovieController extends Controller
 {
     /**
-     * Show all application users.
+     * Show all movies.
      */
     public function index(): View
     {
@@ -17,11 +17,27 @@ class MovieController extends Controller
             'movies' => DB::table('movies')->paginate(10)
         ]);
     }
-
-    public function show($id): View
+    /**
+     * Show movie by id.
+     */
+    public function showMovieById($id): View
     {
         return view('pages.movie-details', [
             'movie' => Movie::findOrFail($id)
         ]);
     }
+    /**
+     * Show movie titles beginning with char.
+     */
+    public function showMovieByChar($char): View
+    {
+        $movies = DB::table('movies')
+            ->where('title', 'like', $char . '%')
+            ->get();
+
+        return view('pages.movies-list', [
+            'movies' => $movies
+        ]);
+    }
+
 }

@@ -5,7 +5,6 @@
                 <a href="/" class="text-white text-lg font-semibold hover:text-blue-200">MovieDB</a>
             </div>
             <nav class="md:flex space-x-10">
-                <a href="/" class="text-base font-medium text-white hover:text-blue-200">Home</a>
                 <a href="/movies" class="text-base font-medium text-white hover:text-blue-200">Movie List</a>
             </nav>
         </div>
