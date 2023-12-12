@@ -19,10 +19,14 @@ Route::get('/', function(){
     return view('pages.home');
 });
 
-Route::get('/movie', function () {
-    return view('pages.movies-list');
-});
+//Route::get('/movie', function () {
+//    return view('pages.movies-list');
+//});
 
-Route::get('/movie/{id}', function (string $id) {
-    return view('pages.movie-details', ['id' => $id]);
-});
+Route::get('/movies', [MovieController::class, 'index']);
+
+//Route::get('/movie/{id}', function (string $id) {
+//    return view('pages.movie-details', ['id' => $id]);
+//});
+
+Route::get('/movie/{id}', [MovieController::class, 'show']);
