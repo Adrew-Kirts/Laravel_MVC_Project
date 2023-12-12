@@ -11,9 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('movies', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::table('movies', function (Blueprint $table) {
             $table->string('title');
             $table->integer('year');
             $table->string('artwork');
@@ -27,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('movies');
+        //
     }
 };
