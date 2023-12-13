@@ -14,7 +14,7 @@ class MovieController extends Controller
     public function index(): View
     {
         return view('pages.movies-list', [
-            'movies' => DB::table('movies')->paginate(10)
+            'movies' => DB::table('movies')->paginate(8)
         ]);
     }
     /**

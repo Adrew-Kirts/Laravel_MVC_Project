@@ -21,7 +21,7 @@ Route::get('/', function(){
 
 Route::get('/movies', [MovieController::class, 'index']);
 
-Route::get('/movie/{id}', [MovieController::class, 'showMovieById']);
+Route::get('/movie/{id}', [MovieController::class, 'showMovieById'])->name('showMovieById');
 
 Route::get('/movies/letter/{char}', [MovieController::class, 'showMovieByChar']);
 
