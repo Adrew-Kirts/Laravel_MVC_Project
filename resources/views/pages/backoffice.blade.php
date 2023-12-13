@@ -5,11 +5,10 @@
         <h2 class="text-4xl font-bold text-center mb-12">Backoffice</h2>
 
         <!-- Add Movie Button -->
-{{--        <a href="{{ route('movies.create') }}" class="mb-4 inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">--}}
-{{--            Add Movie--}}
-{{--        </a>--}}
+        <a href="{{ route('movies.create') }}" class="mb-4 inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            Add Movie
+        </a>
 
-        <!-- Movies Table -->
         <table class="min-w-full leading-normal">
             <thead>
             <tr>
@@ -29,7 +28,9 @@
                         {{ $movie->title }}
                     </td>
                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-{{--                        <a href="{{ route('movies.edit', $movie->id) }}" class="text-blue-600 hover:text-blue-900">Edit</a>--}}
+
+                        <a href="{{ route('movie.edit', $movie->id) }}" class="text-blue-600 hover:text-blue-900">Edit</a>
+
                         <form action="{{ route('movie.destroy', $movie->id) }}" method="POST" onsubmit="return confirm('Are you sure?');">
                             @csrf
                             @method('DELETE')

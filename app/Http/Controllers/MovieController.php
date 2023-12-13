@@ -41,33 +41,57 @@ class MovieController extends Controller
     {
         $movies = DB::table('movies')
             ->where('title', 'like', $char . '%')
-            ->get();
+            ->paginate(10);
 
         return view('pages.movies-list', [
             'movies' => $movies
         ]);
     }
 
-    public function create()
+    public function create() :View
     {
-        // Code to show a form for creating a new resource
+        return view('pages.movie-new');
+    }
+
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'title' => 'required|max:255',
+            'description' => 'required',
+            'year' => 'required|digits:4|integer|min:1900',
+            'genre' => 'required',
+            'artwork' => 'required',
+        ]);
+        Movie::create($request->all());
+        return redirect()->route('backoffice')->with('success', 'Movie created successfully');
     }
 
     public function edit($id)
     {
-        // Code to show a form for editing the specified resource
+        $movie = Movie::findOrFail($id);
+        return view('pages.movie-edit', compact('movie'));
     }
 
     public function update(Request $request, $id)
     {
-        // Code to update the specified resource in storage
+        $request->validate([
+            'title' => 'required|max:255',
+            'description' => 'required',
+            'year' => 'required|digits:4|integer|min:1900',
+            'genre' => 'required',
+            'artwork' => 'required',
+        ]);
+        $movie = Movie::findOrFail($id);
+        $movie -> update($request->all());
+        return redirect()->route('backoffice')->with('success', 'Movie updated successfully');
     }
 
     public function destroy($id)
     {
        $movie = Movie::find($id);
        $movie->delete();
-       return redirect()->route('backoffice')->with('succes', 'Movie deleted successfully');
+       return redirect()->route('backoffice')->with('success', 'Movie deleted successfully');
     }
 
 }

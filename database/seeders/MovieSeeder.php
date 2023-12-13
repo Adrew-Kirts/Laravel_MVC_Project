@@ -40,61 +40,6 @@
 //        ]);
 //    }
 //}
-
-
-//namespace Database\Seeders;
-//
-//use Illuminate\Database\Seeder;
-//use Illuminate\Support\Facades\DB;
-//use Faker\Factory as Faker;
-//use GuzzleHttp\Client;
-//use Xylis\FakerCinema\Provider\Movie as FakerCinemaMovie;
-//use Xylis\FakerCinema\Provider\Person as FakerCinemaPerson;
-//
-//class MovieSeeder extends Seeder
-//{
-//    public function run(): void
-//    {
-//        $faker = Faker::create();
-//        $faker->addProvider(new FakerCinemaMovie($faker));
-//
-//        $fakerActor = Faker::create();
-//        $fakerActor->addProvider(new FakerCinemaPerson($fakerActor));
-//
-//        $client = new Client();
-//        $apiKey = 'b54eb3cf97a9064086a0b34107a0d835';
-//
-//        for ($i = 0; $i < 10; $i++) {
-//            $movieTitle = $faker->movie;
-//            $response = $client->get("https://api.themoviedb.org/3/search/movie?api_key={$apiKey}&query=" . urlencode($movieTitle));
-//            $data = json_decode($response->getBody(), true);
-//
-//            $imageURL = null;
-//            if (!empty($data['results'])) {
-//                $firstMovie = $data['results'][0];
-//                if (!empty($firstMovie['poster_path'])) {
-//                    $imageURL = 'https://image.tmdb.org/t/p/w500' . $firstMovie['poster_path'];
-//                }
-//            }
-//
-//            $actorsArray = $fakerActor->actors(null, rand(2, 6), false);
-//            $actorsString = implode(', ', $actorsArray);
-//
-//            DB::table('movies')->insert([
-//                'title' => $movieTitle,
-//                'description' => $faker->overview,
-//                'year' => $faker->year($max = 'now'),
-//                'genre' => $faker->movieGenre,
-//                'actor' => $actorsString,
-//                'studio' => $faker->studio,
-//                'artwork' => $imageURL,
-//                'created_at' => now(),
-//            ]);
-//        }
-//    }
-//}
-
-
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;

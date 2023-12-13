@@ -23,8 +23,15 @@ Route::get('/movies', [MovieController::class, 'index'])->name('movie.list');
 
 Route::get('/movie/{id}', [MovieController::class, 'showMovieById'])->name('showMovieById');
 
+Route::get('/movie/{id}/edit', [MovieController::class, 'edit'])->name('movie.edit');
+Route::put('/movie/{id}', [MovieController::class, 'update'])->name('movie.update');
+
+Route::get('/movies/create', [MovieController::class, 'create'])->name('movies.create');
+Route::post('/movies/', [MovieController::class, 'store'])->name('movies.store');
+
+Route::delete('/movie/{id}', MovieController::class .'@destroy')->name('movie.destroy');
+
 Route::get('/movies/letter/{char}', [MovieController::class, 'showMovieByChar']);
 
 Route::get('/backoffice', [MovieController::class, 'backoffice'])->name('backoffice');
 
-Route::delete('/movie/{id}', MovieController::class .'@destroy')->name('movie.destroy');

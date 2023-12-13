@@ -30,11 +30,6 @@
                         <div class="bg-gray-100 bg-opacity-70 rounded-2xl p-3">
                             <p class="text-gray-700 italic">{{ $movie->actor }}</p>
                         </div>
-                        <form method="POST" action="{{ route('movie.destroy', $movie) }}" enctype="multipart/form-data" >
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-primary">Delete movie</button>
-                        </form>
                     </div>
                 </div>
             </div>
