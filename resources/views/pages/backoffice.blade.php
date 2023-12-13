@@ -6,8 +6,8 @@
 
         <!-- Add Movie Button -->
 {{--        <a href="{{ route('movies.create') }}" class="mb-4 inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">--}}
-            Add Movie
-        </a>
+{{--            Add Movie--}}
+{{--        </a>--}}
 
         <!-- Movies Table -->
         <table class="min-w-full leading-normal">
@@ -22,14 +22,15 @@
             </tr>
             </thead>
             <tbody>
-            @foreach ($movies as $movie)
+
+                @foreach ($movies as $movie)
                 <tr>
                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                         {{ $movie->title }}
                     </td>
                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                        <a href="{{ route('movies.edit', $movie->id) }}" class="text-blue-600 hover:text-blue-900">Edit</a>
-                        <form action="{{ route('movies.destroy', $movie->id) }}" method="POST" onsubmit="return confirm('Are you sure?');">
+{{--                        <a href="{{ route('movies.edit', $movie->id) }}" class="text-blue-600 hover:text-blue-900">Edit</a>--}}
+                        <form action="{{ route('movie.destroy', $movie->id) }}" method="POST" onsubmit="return confirm('Are you sure?');">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="text-red-600 hover:text-red-900">Delete</button>

@@ -17,6 +17,14 @@ class MovieController extends Controller
             'movies' => DB::table('movies')->paginate(8)
         ]);
     }
+
+    public function backoffice(): View
+    {
+        return view('pages.backoffice', [
+            'movies' => DB::table('movies')->get()
+        ]);
+    }
+
     /**
      * Show movie by id.
      */
@@ -40,4 +48,27 @@ class MovieController extends Controller
         ]);
     }
 
+    public function create()
+    {
+        // Code to show a form for creating a new resource
+    }
+
+    public function edit($id)
+    {
+        // Code to show a form for editing the specified resource
+    }
+
+    public function update(Request $request, $id)
+    {
+        // Code to update the specified resource in storage
+    }
+
+    public function destroy($id)
+    {
+       $movie = Movie::find($id);
+       $movie->delete();
+       return redirect()->route('backoffice')->with('succes', 'Movie deleted successfully');
+    }
+
 }
+

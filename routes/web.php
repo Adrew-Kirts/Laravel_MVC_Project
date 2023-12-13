@@ -19,12 +19,12 @@ Route::get('/', function(){
     return view('pages.home');
 });
 
-Route::get('/movies', [MovieController::class, 'index']);
+Route::get('/movies', [MovieController::class, 'index'])->name('movie.list');
 
 Route::get('/movie/{id}', [MovieController::class, 'showMovieById'])->name('showMovieById');
 
 Route::get('/movies/letter/{char}', [MovieController::class, 'showMovieByChar']);
 
-Route::get('/backoffice', function(){
-    return view('pages.backoffice');
-});
+Route::get('/backoffice', [MovieController::class, 'backoffice'])->name('backoffice');
+
+Route::delete('/movie/{id}', MovieController::class .'@destroy')->name('movie.destroy');
