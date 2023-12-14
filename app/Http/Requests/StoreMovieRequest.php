@@ -24,7 +24,7 @@ class StoreMovieRequest extends FormRequest
         return [
             'title' => 'required|max:255',
             'description' => 'required',
-            'year' => 'required|digits:4|integer|min:1900|max:' . date('Y'),
+            'year' => 'required|digits:4|integer|max:' . date('Y'),
             'genre' => 'required|string',
             'artwork' => 'required|url',
         ];

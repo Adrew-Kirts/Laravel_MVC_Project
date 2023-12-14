@@ -3,8 +3,18 @@
 @section('content')
     <div class="container mx-auto px-4 py-10">
         <h2 class="text-4xl font-bold text-center mb-12">New Movie</h2>
-
-        <form action="{{ route('movies.store') }}" method="POST">
+        @if ($errors->any())
+            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                <strong class="font-bold">Whoops!</strong>
+                <span class="block sm:inline">There were some problems with your input.</span>
+                <ul class="mt-3 list-disc list-inside text-sm text-red-700">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+        <form action="{{ route('movies.store') }}" method="POST" novalidate>
 
             @csrf
             @method('POST')
@@ -43,5 +53,6 @@
                 Back
             </a>
         </form>
+
     </div>
 @stop
