@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Genre;
 use App\Models\Movie;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -13,15 +14,15 @@ class MovieController extends Controller
      */
     public function index(): View
     {
-        return view('pages.movies-list', [
-            'movies' => DB::table('movies')->paginate(8)
-        ]);
+//          $movies = Movie::all();
+        $movies = Movie::with('genre')->paginate(8);
+        return view('pages.movies-list', compact('movies'));
     }
 
     public function backoffice(): View
     {
         return view('pages.backoffice', [
-            'movies' => DB::table('movies')->get()
+            'movies' => Movie::all()
         ]);
     }
 
@@ -59,11 +60,24 @@ class MovieController extends Controller
         $request->validate([
             'title' => 'required|max:255',
             'description' => 'required',
-            'year' => 'required|digits:4|integer|min:1900',
-            'genre' => 'required',
-            'artwork' => 'required',
+            'year' => 'required|digits:4|integer|min:1900|max:' . date('Y'),
+            'genre' => 'required|string',
+            'artwork' => 'required|url',
         ]);
-        Movie::create($request->all());
+
+        $genre = Genre::firstOrCreate(['name' => $request->input('genre')]);
+
+
+        $movie = Movie::create([
+            'title' => $request->input('title'),
+            'description' => $request->input('description'),
+            'year' => $request->input('year'),
+            'genre_id' => $genre->id,
+            'actor' => $request->input('actor'),
+            'artwork' => $request->input('artwork'),
+        ]);
+
+
         return redirect()->route('backoffice')->with('success', 'Movie created successfully');
     }
 

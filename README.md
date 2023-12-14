@@ -1,6 +1,13 @@
 
 # Laravel_MVC_Project
 
+#### Dev env
+
+run `php artisan serve
+` to launch server on localhost
+
+run `npm run dev` to vite compiler for Tailwind 
+
 
 #### Install debug bar
 
