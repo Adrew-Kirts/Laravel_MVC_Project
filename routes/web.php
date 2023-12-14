@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MovieController;
 
@@ -15,7 +15,7 @@ use App\Http\Controllers\MovieController;
 |
 */
 
-Route::get('/', function(){
+Route::get('/', function () {
     return view('pages.home');
 });
 
@@ -33,5 +33,16 @@ Route::delete('/movie/{id}', MovieController::class .'@destroy')->name('movie.de
 
 Route::get('/movies/letter/{char}', [MovieController::class, 'showMovieByChar']);
 
-Route::get('/backoffice', [MovieController::class, 'backoffice'])->name('backoffice');
+Route::get('/backoffice', [MovieController::class, 'backoffice'])->name('backoffice')->middleware(['password.confirm']);;
 
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+require __DIR__.'/auth.php';

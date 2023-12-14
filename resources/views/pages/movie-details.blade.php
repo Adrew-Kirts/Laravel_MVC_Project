@@ -18,7 +18,7 @@
 
                     <div class="w-full md:w-3/4 lg:w-4/5 xl:w-5/6 md:pl-6">
                         <h2 class="text-4xl font-bold mb-2">{{ $movie->title }} ({{ $movie->year }})</h2>
-                        <p class="text-lg text-gray-600 mb-1">Genre: {{ $movie->genre }}</p>
+                        <p class="text-lg text-gray-600 mb-1">Genre: {{ $movie->genre->name }}</p>
                         <p class="text-lg text-gray-800 mb-1 pt-4">Description</p>
 
                         <div id="description" class="bg-gray-100 bg-opacity-70 rounded-2xl p-3 max-h-24 overflow-hidden cursor-pointer" onclick="toggleDescription()">
