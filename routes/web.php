@@ -19,7 +19,7 @@ Route::get('/', function () {
     return view('pages.home');
 });
 
-Route::get('/movies', [MovieController::class, 'index'])->name('movie.list');
+Route::get('/movies', [MovieController::class, 'index'])->name('movie.list')->name('allMovies');
 
 Route::get('/movie/{id}', [MovieController::class, 'showMovieById'])->name('showMovieById');
 

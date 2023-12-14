@@ -25,7 +25,7 @@
 
             <div class="mb-4">
                 <label for="genre" class="block text-gray-700 text-sm font-bold mb-2">Genre:</label>
-                <textarea name="genre" id="genre" rows="4" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>{{ $movie->genre }}</textarea>
+                <textarea name="genre" id="genre" rows="4" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>{{ $movie->genre->name }}</textarea>
             </div>
 
             <div class="mb-4">

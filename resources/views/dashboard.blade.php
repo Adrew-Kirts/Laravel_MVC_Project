@@ -1,5 +1,18 @@
 <x-app-layout>
     <x-slot name="header">
+        <!-- Navigation Links -->
+        <nav class="space-x-4">
+            <a href="/movies" class="text-gray-600 hover:text-gray-800">Movie List</a>
+{{--            <a href="{{ route('allMovies') }}" class="text-gray-600 hover:text-gray-800">Movie list</a>--}}
+            @auth
+                <a href="{{ route('backoffice') }}" class="text-gray-600 hover:text-gray-800">Backoffice</a>
+                <form method="POST" action="{{ route('logout') }}" class="inline">
+                    @csrf
+                    <button type="submit" class="text-gray-600 hover:text-gray-800">Logout</button>
+                </form>
+            @endauth
+        </nav>
+
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Dashboard') }}
         </h2>
