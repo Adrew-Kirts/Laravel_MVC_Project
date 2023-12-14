@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Http\Requests\StoreMovieRequest;
 use App\Models\Genre;
 use App\Models\Movie;
 use Illuminate\Http\Request;
@@ -55,18 +56,10 @@ class MovieController extends Controller
     }
 
 
-    public function store(Request $request)
+    public function store(StoreMovieRequest $request)
     {
-        $request->validate([
-            'title' => 'required|max:255',
-            'description' => 'required',
-            'year' => 'required|digits:4|integer|min:1900|max:' . date('Y'),
-            'genre' => 'required|string',
-            'artwork' => 'required|url',
-        ]);
 
         $genre = Genre::firstOrCreate(['name' => $request->input('genre')]);
-
 
         $movie = Movie::create([
             'title' => $request->input('title'),
