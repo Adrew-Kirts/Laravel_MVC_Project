@@ -29,7 +29,7 @@
                         <p class="text-lg text-gray-800 mb-1 pt-4">Starring</p>
                         <div class="bg-gray-100 bg-opacity-70 rounded-2xl p-3">
                             <p class="text-gray-700 text-base italic line-clamp-2">Starring:
-                                @forelse ($movie->actor as $actor)
+                                @forelse ($movie->actors as $actor)
                                     {{ $loop->first ? '' : ', ' }}
                                     {{ $actor->name }}
                                 @empty

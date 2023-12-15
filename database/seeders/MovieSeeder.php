@@ -95,7 +95,7 @@ class MovieSeeder extends Seeder
                 }
 
                 $genre = Genre::firstOrCreate(['name' => $faker->movieGenre]);
-                $movie = Movie::create([
+                $movie = Movie::firstOrcreate([
                     'title' => $movieData['title'] ?? $movieTitle,
                     'description' => $movieData['overview'] ?? '',
                     'year' => substr($movieData['release_date'], 0, 4) ?? '',
@@ -105,7 +105,7 @@ class MovieSeeder extends Seeder
 
                 foreach ($actors as $actorName) {
                     $actor = Actor::firstOrCreate(['name' => $actorName]);
-                    $movie->actor()->attach($actor->id);
+                    $movie->actors()->attach($actor->id);
                 }
             }
         }

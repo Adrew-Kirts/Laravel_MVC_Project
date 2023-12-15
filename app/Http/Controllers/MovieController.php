@@ -106,7 +106,8 @@ class MovieController extends Controller
         $movies = Movie::query()
             ->where('title', 'LIKE', "%{$search}%")
             ->orWhere('description', 'LIKE', "%{$search}%")
-            ->get();
+            ->orWhere('year', 'LIKE', "%{$search}%")
+            ->paginate(8);
 
         return view('pages.movies-list', compact('movies'));
     }
