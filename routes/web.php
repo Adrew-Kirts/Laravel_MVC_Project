@@ -33,6 +33,8 @@ Route::delete('/movie/{id}', MovieController::class .'@destroy')->name('movie.de
 
 Route::get('/movies/letter/{char}', [MovieController::class, 'showMovieByChar']);
 
+Route::get('/search/', 'PostsController@search')->name('search');
+
 Route::get('/backoffice', [MovieController::class, 'backoffice'])->name('backoffice')->middleware(['password.confirm']);;
 
 Route::get('/dashboard', function () {

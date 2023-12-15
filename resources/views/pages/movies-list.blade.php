@@ -10,7 +10,15 @@
                         <div class="p-4">
                             <h3 class="text-xl font-semibold mb-2">{{ $movie->title }}</h3>
                             <p class="text-sm text-gray-600 mb-4">Genre: {{ $movie->genre->name ?? 'Unknown' }}</p>
-                            <p class="text-gray-700 text-base italic min-h-[50px]">Starring: {{ Str::limit($movie->actor, 50) }}</p>
+                            <p class="text-gray-700 text-base italic line-clamp-2">Starring:
+                                @forelse ($movie->actors as $actor)
+                                    {{ $loop->first ? '' : ', ' }}
+                                    {{ $actor->name }}
+                                @empty
+                                    Not Available
+                                @endforelse
+                            </p>
+
                         </div>
                     </div>
                 </a>

@@ -6,6 +6,7 @@
 //use Illuminate\Support\Facades\DB;
 //use Faker\Factory as Faker;
 //use GuzzleHttp\Client;
+//use App\Models\Genre;
 //use Xylis\FakerCinema\Provider\Movie as FakerCinemaMovie;
 //
 //class MovieSeeder extends Seeder
@@ -37,32 +38,32 @@
 //                }
 //
 //                $actorsString = implode(', ', $actors);
-//
 //                $imageURL = 'https://image.tmdb.org/t/p/w500' . ($movieData['poster_path'] ?? '');
+//
+//                $genreName = $faker->movieGenre;
+//                $genre = Genre::firstOrCreate(['name' => $genreName]);
 //
 //                DB::table('movies')->insert([
 //                    'title' => $movieData['title'] ?? $movieTitle,
 //                    'description' => $movieData['overview'] ?? '',
 //                    'year' => substr($movieData['release_date'], 0, 4) ?? '',
-//                    'genre' => $faker->movieGenre,
+//                    'genre_id' => $genre->id,
 //                    'actor' => $actorsString,
-//                    'studio' => $faker->studio,
 //                    'artwork' => $imageURL,
 //                    'created_at' => now(),
 //                ]);
-//                DB::table('genres')-insert(['genre' => $faker->movieGenre]);
 //            }
 //        }
 //    }
 //}
 
+
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
+use App\Models\{Movie, Genre, Actor};
 use Faker\Factory as Faker;
 use GuzzleHttp\Client;
-use App\Models\Genre; // Import the Genre model
 use Xylis\FakerCinema\Provider\Movie as FakerCinemaMovie;
 
 class MovieSeeder extends Seeder
@@ -93,22 +94,19 @@ class MovieSeeder extends Seeder
                     }
                 }
 
-                $actorsString = implode(', ', $actors);
-                $imageURL = 'https://image.tmdb.org/t/p/w500' . ($movieData['poster_path'] ?? '');
-
-                // Create or find the genre
-                $genreName = $faker->movieGenre;
-                $genre = Genre::firstOrCreate(['name' => $genreName]);
-
-                DB::table('movies')->insert([
+                $genre = Genre::firstOrCreate(['name' => $faker->movieGenre]);
+                $movie = Movie::create([
                     'title' => $movieData['title'] ?? $movieTitle,
                     'description' => $movieData['overview'] ?? '',
                     'year' => substr($movieData['release_date'], 0, 4) ?? '',
-                    'genre_id' => $genre->id, // Assigning genre_id
-                    'actor' => $actorsString,
-                    'artwork' => $imageURL,
-                    'created_at' => now(),
+                    'genre_id' => $genre->id,
+                    'artwork' => 'https://image.tmdb.org/t/p/w500' . ($movieData['poster_path'] ?? ''),
                 ]);
+
+                foreach ($actors as $actorName) {
+                    $actor = Actor::firstOrCreate(['name' => $actorName]);
+                    $movie->actor()->attach($actor->id);
+                }
             }
         }
     }

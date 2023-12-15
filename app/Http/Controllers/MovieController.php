@@ -15,7 +15,7 @@ class MovieController extends Controller
      */
     public function index(): View
     {
-        $movies = Movie::with('genre')->paginate(8);
+        $movies = Movie::with('genre', 'actors')->paginate(8);
         return view('pages.movies-list', compact('movies'));
     }
 
@@ -98,6 +98,17 @@ class MovieController extends Controller
        $movie = Movie::find($id);
        $movie->delete();
        return redirect()->route('backoffice')->with('success', 'Movie deleted successfully');
+    }
+
+    public function search(Request $request){
+        $search = $request->input('search');
+
+        $movies = Movie::query()
+            ->where('title', 'LIKE', "%{$search}%")
+            ->orWhere('description', 'LIKE', "%{$search}%")
+            ->get();
+
+        return view('pages.movies-list', compact('movies'));
     }
 
 }
