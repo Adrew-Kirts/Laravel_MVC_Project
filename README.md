@@ -168,6 +168,4 @@ The `/api/movie/{id}` route allows you to delete an existing movie using its ID.
 
 - `id`: the ID of the movie to delete
 
-## Connecting to the API
 
-To connect to the API, you can use the built-in OAuth2 authentication method of Laravel Sanctum. You need to create an access token using the `/api/token` route.

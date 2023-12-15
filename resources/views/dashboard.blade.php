@@ -3,7 +3,6 @@
         <!-- Navigation Links -->
         <nav class="space-x-4">
             <a href="/movies" class="text-gray-600 hover:text-gray-800">Movie List</a>
-{{--            <a href="{{ route('allMovies') }}" class="text-gray-600 hover:text-gray-800">Movie list</a>--}}
             @auth
                 <a href="{{ route('backoffice') }}" class="text-gray-600 hover:text-gray-800">Backoffice</a>
                 <form method="POST" action="{{ route('logout') }}" class="inline">
@@ -23,6 +22,16 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     {{ __("You're logged in!") }}
+
+                    <!-- Display User's Tokens -->
+                    <div class="mt-6">
+                        <h3 class="font-semibold text-lg text-gray-800">Your API Tokens:</h3>
+                        @forelse (auth()->user()->tokens as $token)
+                            <p>{{ $token->name }}: {{ $token->token }}</p>
+                        @empty
+                            <p>You have no API tokens.</p>
+                        @endforelse
+                    </div>
                 </div>
             </div>
         </div>
